@@ -5,7 +5,10 @@
 
 <body>
     <div id="app">
-        <p>{{ message }}</p>
+        <p>{{ counter }}</p>
+        <input v-model.number="step" />
+        <button @click="increment">Add</button>
+        <button @click="decrement">Decrement</button>
     </div>  
     
     <script src="index.js"></script>
