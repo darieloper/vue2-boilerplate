@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <head>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <p>{{ message }}</p>
+        <form @submit="add" autocomplete="off">
+            <input v-model="task" placeholder="Insert the Task">
+            <button type="submit" :disabled="canAdd">Add</button>
+        </form>
+        
+        <br /><br />
+        <table style="width: 300px;">
+            <thead>
+                <tr>
+                    <th width="150px">Task</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in lists" :key="index">
+                    <td>
+                        <a v-if="!isEditing(index)" @click.stop="edit(index)" href="javascript:void(0)">{{ item }}</a>
+                        <input placeholder="Insert the Task" v-model="task_to_edit" v-else/>
+                    </td>
+                    <td>
+                        <button @click="saveEdition" v-if="isEditing(index)">Save</button>
+                        <button @click="remove(index)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <button @click="clearAll" v-if="showClearAll">Clear All</button>
     </div>  
     
     <script src="index.js"></script>
