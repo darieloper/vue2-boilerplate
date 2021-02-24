@@ -2,6 +2,17 @@ new Vue({
     el: '#app',
 
     data: {
-        message: 'Hello World!'
+        step: 1,
+        counter: 0
+    },
+
+    methods: {
+        increment() {
+            this.counter += this.step
+        },
+
+        decrement() {
+            this.counter -= this.step
+        }
     }
 });
